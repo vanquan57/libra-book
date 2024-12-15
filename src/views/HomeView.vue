@@ -2,7 +2,8 @@
 </script>
 
 <template>
-  <main>
-    home
-  </main>
+    <main>
+        home
+        <el-button type="primary">Primary</el-button>
+    </main>
 </template>
