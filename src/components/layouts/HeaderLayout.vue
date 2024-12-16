@@ -47,7 +47,7 @@
                         </router-link>
                     </li>
                     <li>
-                        <router-link to="#">
+                        <router-link to="/auth/register">
                             Sign Up
                         </router-link>
                     </li>

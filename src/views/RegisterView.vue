@@ -19,6 +19,28 @@
                     <p>Enter your details below</p>
                 </div>
                 <el-form-item
+                    prop="employee_code"
+                    class="form-group"
+                >
+                    <el-input
+                        v-model="form.employee_code"
+                        class="form-input no-border"
+                        type="text"
+                        placeholder="Enter your employee code"
+                    />
+                </el-form-item>
+                <el-form-item
+                    prop="name"
+                    class="form-group"
+                >
+                    <el-input
+                        v-model="form.name"
+                        class="form-input no-border"
+                        type="text"
+                        placeholder="Enter your full name"
+                    />
+                </el-form-item>
+                <el-form-item
                     prop="email"
                     class="form-group"
                 >
@@ -43,18 +65,23 @@
                     />
                 </el-form-item>
                 <div class="form-group-actions">
-                    <div class="login-google">
+                    <div class="form-group-actions_item">
+                        <button
+                            class="btn btn-register"
+                            type="submit">
+                            Create Account
+                        </button>
+                    </div>
+                    <div class="form-group-actions_item">
                         <GoogleLogin
-                            class="btn-login_google"
+                            class="btn btn-login_google"
                             :callback="callback"
                         />
                     </div>
-                    <div class="login-actions">
-                        <button type="submit">
+                    <div class="form-group-actions_item">
+                        <p>Already have account?</p>
+                        <router-link to="/auth/login">
                             Log in
-                        </button>
-                        <router-link to="/forget-password">
-                            Forget password ?
                         </router-link>
                     </div>
                 </div>
@@ -67,12 +94,53 @@
 import images from '@/assets/images';
 import { reactive, ref } from 'vue';
 const form = reactive({
+    employee_code: '',
+    name: '',
     email: '',
     password: ''
 });
 const loginForm = ref(null);
 
 const rules = {
+    employee_code: [
+        {
+            required: true,
+            message: 'Please input your employee code',
+            trigger: 'blur'
+        },
+        {
+            type: 'string',
+            message: 'Employee code must be a string',
+            trigger: 'blur'
+        },
+        {
+            validator: (rule, value, callback) => {
+                if (value && !value.match(/^K\d+$/)) {
+                    callback(new Error('You are not employee of KiaiSoft ?'));
+                } else {
+                    callback();
+                }
+            },
+            trigger: 'blur'
+        }
+    ],
+    name: [
+        {
+            required: true,
+            message: 'Please input your full name',
+            trigger: 'blur'
+        },
+        {
+            type: 'string',
+            message: 'Full name must be a string',
+            trigger: 'blur'
+        },
+        {
+            min: 10,
+            message: 'Full name must be at least 10 characters',
+            trigger: 'blur'
+        }
+    ],
     email: [
         {
             required: true,
@@ -103,7 +171,8 @@ const rules = {
         },
         {
             pattern: /^(?=.*\d)(?=.*[A-Z]).{8,}$/,
-            message: 'Password must be at least 8 characters and contain at least one number and one uppercase letter',
+            message:
+                'Password must be at least 8 characters and contain at least one number and one uppercase letter',
             trigger: 'blur'
         }
     ]
@@ -138,7 +207,6 @@ const handleSubmit = async () => {
 .login-container {
     margin: 40px 0 60px 0;
     display: flex;
-
     .side-image {
         width: 56%;
         img {
@@ -186,27 +254,21 @@ const handleSubmit = async () => {
                 flex-direction: column;
                 margin-top: 40px;
                 width: 100%;
-                .login-google {
+                .form-group-actions_item{
                     width: 100%;
-                    .btn-login_google {
-                        width: 100%;
-                        height: 40px;
-                    }
-                }
-                .login-actions {
                     display: flex;
-                    gap: 10px;
-                    height: 56px;
+                    justify-content: center;
                     align-items: center;
-                    margin-top: 20px;
-                    justify-content: space-between;
-                    button {
-                        width: 143px;
-                        height: 100%;
-                        background-color: $color-red;
+                    gap: 20px;
+                    .btn{
+                        width: 100%;
+                    }
+                    .btn-register {
+                        background-color: $primary-color;
                         color: $text-color-white;
                         border: none;
                         border-radius: 5px;
+                        height: 56px;
                         cursor: pointer;
                         font-size: 16px;
                         font-weight: 500;
@@ -215,11 +277,18 @@ const handleSubmit = async () => {
                             opacity: 0.9;
                         }
                     }
-                    a {
-                        color: $color-red;
+                    .btn-login_google {
+                        margin-top: 20px;
+                        height: 40px;
+                    }
+                    a{
+                        color: $text-color-black;
                         font-size: 16px;
                         font-weight: 400;
-                        text-decoration: none;
+                        text-decoration: underline;
+                        &:hover{
+                            color: $primary-color;
+                        }
                     }
                 }
             }
@@ -231,5 +300,4 @@ const handleSubmit = async () => {
         display: none;
     }
 }
-
 </style>
