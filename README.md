@@ -34,3 +34,13 @@ npm i axios
 ```sh
 npm add -D sass
 ```
+### install login google
+
+```sh
+npm i vue3-google-login
+```
+### install dotenv
+
+```sh
+npm install --save-dev dotenv
+```
