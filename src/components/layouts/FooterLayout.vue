@@ -190,7 +190,6 @@ import IconSend from '@/components/icons/IconSend.vue';
     background: var(--Button, rgba(255, 69, 0, 0.78));
     color: #fafafa;
     padding: 10px 50px;
-    margin-top: 140px;
     .footer-content {
         display: flex;
         justify-content: space-between;
