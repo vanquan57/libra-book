@@ -4,4 +4,13 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0;font-family: '
     border: none !important; /* Loại bỏ viền của wrapper */
     box-shadow: none !important; /* Loại bỏ bóng của wrapper */
     padding: 0 !important; /* Loại bỏ padding của wrapper */
+    background-color: transparent !important; /* Loại bỏ màu nền của wrapper */
+}
+
+.el-input__inner{
+    width: 100% !important; /* Chiều rộng 100% */
+    border: none !important; /* Loại bỏ viền của input */
+    box-shadow: none !important; /* Loại bỏ bóng của input */
+    padding: 0 !important; /* Loại bỏ padding của input */
+    background-color: transparent !important; /* Loại bỏ màu nền của input */
 }

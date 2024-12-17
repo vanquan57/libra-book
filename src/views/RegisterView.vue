@@ -68,7 +68,8 @@
                     <div class="form-group-actions_item">
                         <button
                             class="btn btn-register"
-                            type="submit">
+                            type="submit"
+                        >
                             Create Account
                         </button>
                     </div>

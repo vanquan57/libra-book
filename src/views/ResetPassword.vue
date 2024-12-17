@@ -8,54 +8,46 @@
         </div>
         <div class="login-form">
             <el-form
-                ref="loginForm"
+                ref="resetPasswordForm"
                 :model="form"
                 :rules="rules"
                 class="form-control"
                 @submit.prevent="handleSubmit"
             >
                 <div class="form-header">
-                    <h2>Log in to Kiai-Libra</h2>
-                    <p>Enter your details below</p>
+                    <h2>Reset password </h2>
+                    <p>Enter your new password</p>
                 </div>
                 <el-form-item
-                    prop="email"
+                    prop="newPassword"
                     class="form-group"
                 >
                     <el-input
-                        v-model="form.email"
+                        v-model="form.newPassword"
                         class="form-input no-border"
-                        type="email"
-                        placeholder="Email"
+                        type="password"
+                        placeholder="New password"
+                        show-password
                     />
                 </el-form-item>
 
                 <el-form-item
-                    prop="password"
+                    prop="passwordConfirmation"
                     class="form-group"
                 >
                     <el-input
-                        v-model="form.password"
+                        v-model="form.passwordConfirmation"
                         class="form-input no-border"
                         type="password"
-                        placeholder="Password"
+                        placeholder="Password confirmation"
                         show-password
                     />
                 </el-form-item>
                 <div class="form-group-actions">
-                    <div class="login-google">
-                        <GoogleLogin
-                            class="btn-login_google"
-                            :callback="callback"
-                        />
-                    </div>
                     <div class="login-actions">
                         <button type="submit">
-                            Log in
+                            Reset password
                         </button>
-                        <router-link to="/auth/verify-email">
-                            Forget password ?
-                        </router-link>
                     </div>
                 </div>
             </el-form>
@@ -66,39 +58,18 @@
 <script setup>
 import images from '@/assets/images';
 import { reactive, ref } from 'vue';
+
 const form = reactive({
-    email: '',
-    password: ''
+    newPassword: '',
+    passwordConfirmation: ''
 });
-const loginForm = ref(null);
+const resetPasswordForm = ref(null);
 
 const rules = {
-    email: [
+    newPassword: [
         {
             required: true,
-            message: 'Please input your email',
-            trigger: 'blur'
-        },
-        {
-            type: 'email',
-            message: 'Please enter a valid email address',
-            trigger: 'blur'
-        },
-        {
-            validator: (rule, value, callback) => {
-                if (value && !value.includes('kiaisoft')) {
-                    callback(new Error('You are not employee of KiaiSoft ?'));
-                } else {
-                    callback();
-                }
-            },
-            trigger: 'blur'
-        }
-    ],
-    password: [
-        {
-            required: true,
-            message: 'Please input your password',
+            message: 'Please input your new password',
             trigger: 'blur'
         },
         {
@@ -106,22 +77,28 @@ const rules = {
             message: 'Password must be at least 8 characters and contain at least one number and one uppercase letter',
             trigger: 'blur'
         }
+    ],
+    passwordConfirmation: [
+        {
+            required: true,
+            message: 'Please input your password confirmation',
+            trigger: 'blur'
+        },
+        {
+            validator: (rule, value, callback) => {
+                if (value !== form.newPassword) {
+                    callback(new Error('The password confirmation does not match'));
+                } else {
+                    callback();
+                }
+            },
+            trigger: 'blur'
+        }
     ]
-};
-/**
- * Google login callback
- *
- * @param {Object} response - Google response
- *
- * @returns {void}
- */
-const callback = (response) => {
-    const credential = response.credential;
-    console.log(credential);
 };
 
 const handleSubmit = async () => {
-    await loginForm.value.validate((valid) => {
+    await resetPasswordForm.value.validate((valid) => {
         if (valid) {
             console.log('Form submitted:', form);
         } else {
@@ -184,24 +161,16 @@ const handleSubmit = async () => {
             .form-group-actions {
                 display: flex;
                 flex-direction: column;
-                margin-top: 40px;
                 width: 100%;
-                .login-google {
-                    width: 100%;
-                    .btn-login_google {
-                        width: 100%;
-                        height: 40px;
-                    }
-                }
                 .login-actions {
                     display: flex;
                     gap: 10px;
                     height: 56px;
                     align-items: center;
-                    margin-top: 20px;
+                    margin-top: 30px;
                     justify-content: space-between;
                     button {
-                        width: 143px;
+                        width: 100%;
                         height: 100%;
                         background-color: $color-red;
                         color: $text-color-white;
