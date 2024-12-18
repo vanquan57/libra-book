@@ -4,7 +4,8 @@
             <div class="top-header__container">
                 <div class="sale-banner">
                     <p class="sale-banner__text">
-                        Summer Reading Promotion: Up to 50% Off All Membership Plans and Free Registration!
+                        Summer Reading Promotion: Up to 50% Off All Membership
+                        Plans and Free Registration!
                         <span class="promo-link">ShopNow</span>
                     </p>
                 </div>
@@ -65,6 +66,64 @@
                         </button>
                     </div>
                 </form>
+                <div class="actions">
+                    <div class="action-item">
+                        <router-link to="/wishlist">
+                            <IconHeart />
+                        </router-link>
+                    </div>
+                    <div class="action-item">
+                        <router-link to="/cart">
+                            <IconCart />
+                        </router-link>
+                    </div>
+                    <div class="action-item">
+                        <span
+                            class="action-item__user"
+                            :class="{ active: isShowAction }"
+                            @click="isShowAction = !isShowAction"
+                        >
+                            <IconUser
+                                :color-stroke="isShowAction ? 'white' : 'black'"
+                            />
+                        </span>
+                        <div
+                            v-if="isShowAction"
+                            class="user-menu-dropdown"
+                        >
+                            <ul class="user-menu">
+                                <li class="user-menu__item">
+                                    <IconUser
+                                        class="icon"
+                                        :color-stroke="'white'"
+                                    />
+                                    <router-link to="/my-account">
+                                        My Account
+                                    </router-link>
+                                </li>
+                                <li class="user-menu__item">
+                                    <IconMyOrder class="icon" />
+                                    <router-link to="/my-order">
+                                        My Order
+                                    </router-link>
+                                </li>
+                                <li class="user-menu__item">
+                                    <IconHeart
+                                        class="icon"
+                                        :color-stroke="'white'"
+                                    />
+                                    <router-link to="/wishlist">
+                                        Wishlist
+                                    </router-link>
+                                </li>
+                                <li class="user-menu__item">
+                                    <IconLogout />
+                                    <button>Logout</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </nav>
     </header>
@@ -72,15 +131,30 @@
 
 <script setup>
 import IconSearch from '@/components/icons/IconSearch.vue';
+import IconCart from '../icons/IconCart.vue';
+import IconHeart from '../icons/IconHeart.vue';
+import IconUser from '../icons/IconUser.vue';
+import IconMyOrder from '../icons/IconMyOrder.vue';
+import IconLogout from '../icons/IconLogout.vue';
+import { ref } from 'vue';
+
+const isShowAction = ref(false);
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/scss/_variables.scss";
+
 header {
     display: flex;
     justify-content: center;
     flex-direction: column;
     border-bottom: 0.5px solid $line-color-orange;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: white;
     .top-header {
         display: flex;
         background-color: $primary-color;
@@ -157,6 +231,8 @@ header {
             }
         }
         .search {
+            display: flex;
+            align-items: center;
             form {
                 display: flex;
                 width: 243px;
@@ -191,6 +267,97 @@ header {
                     }
                 }
             }
+            .actions {
+                display: flex;
+                gap: 16px;
+                justify-content: center;
+                align-items: center;
+                height: 32px;
+                width: 128px;
+                margin-left: 30px;
+
+                .action-item {
+                    width: 32px;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .action-item:last-child {
+                    position: relative;
+                    .action-item__user {
+                        border-radius: 100%;
+                        padding: 3px 5px;
+                        cursor: pointer;
+                        transition: all 0.3s;
+                    }
+                    .action-item__user:hover {
+                        background-color: $primary-color;
+                    }
+                    .action-item__user.active {
+                        background-color: $primary-color;
+                    }
+                    .user-menu-dropdown {
+                        position: absolute;
+                        top: 30px;
+                        right: 0;
+                        z-index: 100;
+                        .user-menu {
+                            width: 225px;
+                            box-sizing: border-box;
+                            overflow: hidden;
+                            list-style: none;
+                            background: $color-grown-bold;
+                            backdrop-filter: blur(150px);
+                            border-radius: 4px;
+                            padding: 0px;
+                            &__item {
+                                &:hover {
+                                    background-color: $primary-color;
+                                    a {
+                                        color: $text-color-white;
+                                    }
+                                    button {
+                                        color: $text-color-white;
+                                    }
+                                }
+                                .icon {
+                                    width: 24px;
+                                    height: 24px;
+                                }
+                                padding: 5px 10px;
+                                display: flex;
+                                align-items: center;
+                                gap: 16px;
+                                width: 100%;
+                                height: 32px;
+                                margin-bottom: 13px;
+                                transition: all 0.3s;
+                                &:last-child {
+                                    margin-bottom: 0;
+                                }
+                                a {
+                                    color: $text-color-white;
+                                    text-decoration: none;
+                                    font-size: 14px;
+                                    font-weight: 500;
+                                }
+                                button {
+                                    width: 100%;
+                                    height: 100%;
+                                    background: none;
+                                    border: none;
+                                    color: $text-color-white;
+                                    font-size: 14px;
+                                    font-weight: 500;
+                                    cursor: pointer;
+                                    text-align: left;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -204,7 +371,7 @@ header {
                 padding: 0 10px;
             }
         }
-        .sale-banner__text{
+        .sale-banner__text {
             font-size: 13px;
             text-align: left;
         }

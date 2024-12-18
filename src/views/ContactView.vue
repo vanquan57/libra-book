@@ -94,22 +94,22 @@
 </template>
 
 <script setup>
-import BreadcrumbComponent from "@/components/BreadcrumbComponent.vue";
-import IconBoxMessage from "@/components/icons/IconBoxMessage.vue";
-import IconPhone from "@/components/icons/IconPhone.vue";
-import { reactive, ref } from "vue";
+import BreadcrumbComponent from '@/components/BreadcrumbComponent.vue';
+import IconBoxMessage from '@/components/icons/IconBoxMessage.vue';
+import IconPhone from '@/components/icons/IconPhone.vue';
+import { reactive, ref } from 'vue';
 
 const loading = ref(false);
 const formRef = ref(null);
 
 // Model dữ liệu form
 const form = reactive({
-    email: "",
+    email: ''
 });
 
 // Quy tắc validate của Element Plus
 const rules = {
-    email: [],
+    email: []
 };
 
 // Hàm submit form
@@ -117,7 +117,7 @@ const onSubmit = () => {
     formRef.value.validate((valid) => {
         if (valid) {
             loading.value = true; // Loading button
-            console.log("Form is valid", form);
+            console.log('Form is valid', form);
         }
     });
 };

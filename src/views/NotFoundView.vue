@@ -4,13 +4,15 @@
         <div class="not-found-content">
             <h1>404 Not Found</h1>
             <p>Your visited page not found. You may go home page.</p>
-            <router-link to="/">Back to Home</router-link>
+            <router-link to="/">
+                Back to Home
+            </router-link>
         </div>
     </div>
 </template>
 
 <script setup>
-import BreadcrumbComponent from "@/components/BreadcrumbComponent.vue";
+import BreadcrumbComponent from '@/components/BreadcrumbComponent.vue';
 </script>
 
 <style lang="scss" scoped>
