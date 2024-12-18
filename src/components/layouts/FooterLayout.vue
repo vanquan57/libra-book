@@ -162,8 +162,7 @@
                     <a
                         href="#"
                         aria-label="LinkedIn"
-                    ><IconLinkedin />
-                    </a>
+                    ><IconLinkedin /> </a>
                 </div>
             </div>
         </div>
@@ -189,11 +188,18 @@ import IconSend from '@/components/icons/IconSend.vue';
 .main-footer {
     background: var(--Button, rgba(255, 69, 0, 0.78));
     color: #fafafa;
-    padding: 10px 50px;
+    width: 100%;
+    padding: 40px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     .footer-content {
-        display: flex;
+        max-width: 1200px;
+        display: grid;
+        width: 100%;
+        margin: 0 auto;
         justify-content: space-between;
-        flex-wrap: wrap;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: 20px;
         .footer-section {
             flex: 1;
@@ -227,6 +233,9 @@ import IconSend from '@/components/icons/IconSend.vue';
                     padding: 12px 16px;
                     color: #fafafa;
                     font: 400 16px Poppins, sans-serif;
+                    &::placeholder {
+                        color: #fafafa;
+                    }
                 }
 
                 .footer-submit {
@@ -307,20 +316,46 @@ import IconSend from '@/components/icons/IconSend.vue';
         }
     }
 }
+@media (max-width: 1023px) {
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px;
+        .footer-section {
+            max-width: fit-content;
+            padding: 10px;
+        }
+    }
+}
 
 @media (max-width: 767px) {
     .main-footer {
-        padding: 40px 20px 24px;
         margin-top: 60px;
     }
-
     .footer-content {
+        display: flex;
         flex-direction: column;
-        gap: 40px;
+
+        .footer-form {
+            display: flex;
+            border: 1.5px solid #fafafa;
+            border-radius: 4px;
+            position: relative;
+            width: 80%;
+        }
     }
 
     .footer-section {
-        width: 100%;
+        width: 90%;
+        margin: 0 auto;
+        address {
+            width: 80%;
+        }
+    }
+    .footer-bottom {
+        p {
+            width: 90%;
+            margin: 0 auto;
+        }
     }
 }
 </style>
