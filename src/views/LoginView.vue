@@ -134,9 +134,10 @@ const handleSubmit = async () => {
 
 <style lang="scss" scoped>
 @import "@/assets/scss/_variables.scss";
+// get element parent 
 
 .login-container {
-    margin: 40px 0 60px 0;
+    margin: 170px 0 60px 0;
     display: flex;
 
     .side-image {
@@ -173,7 +174,6 @@ const handleSubmit = async () => {
                 border: none;
                 margin-top: 20px;
                 margin-bottom: 0;
-
                 .form-input {
                     width: 100%;
                     height: 40px;

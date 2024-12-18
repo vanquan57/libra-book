@@ -206,7 +206,7 @@ const handleSubmit = async () => {
 @import "@/assets/scss/_variables.scss";
 
 .login-container {
-    margin: 40px 0 60px 0;
+    margin: 170px 0 60px 0;
     display: flex;
     .side-image {
         width: 56%;

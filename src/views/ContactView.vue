@@ -189,7 +189,7 @@ const onSubmit = () => {
             }
         }
         .contact-content__right {
-            padding:0 40px;
+            padding:20px 40px;
             box-shadow: 0px 1px 13px 0px #0000000d;
             display: flex;
             flex-direction: column;
@@ -234,9 +234,10 @@ const onSubmit = () => {
                     width: 215px;
                     height: 40px;
                     border-radius: 5px;
+                    margin-left: calc(100% - 215px);
                     background-color: $primary-color;
                     border: none;
-                    align-self: flex-start;
+                    align-self: flex-end;
                     color: #fff;
                     &:hover {
                         background-color: darken($primary-color, 10%);

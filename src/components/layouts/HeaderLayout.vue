@@ -11,56 +11,37 @@
                 </div>
                 <div class="language">
                     <select id="choose_language">
-                        <option value="en">
-                            English
-                        </option>
-                        <option value="es">
-                            Viet Nam
-                        </option>
-                        <option value="fr">
-                            Japanese
-                        </option>
+                        <option value="en">English</option>
+                        <option value="es">Viet Nam</option>
+                        <option value="fr">Japanese</option>
                     </select>
                 </div>
             </div>
         </section>
         <nav class="nav-bar">
             <div class="logo">
-                <router-link to="/">
-                    Kiai-Libra
-                </router-link>
+                <router-link to="/"> Kiai-Libra </router-link>
             </div>
             <div class="menu">
                 <ul>
                     <li>
-                        <router-link to="#">
-                            Home
-                        </router-link>
+                        <router-link to="#"> Home </router-link>
                     </li>
                     <li>
-                        <router-link to="/contact">
-                            Contact
-                        </router-link>
+                        <router-link to="/contact"> Contact </router-link>
                     </li>
                     <li>
-                        <router-link to="/about">
-                            About
-                        </router-link>
+                        <router-link to="/about"> About </router-link>
                     </li>
                     <li>
-                        <router-link to="/auth/register">
-                            Sign Up
-                        </router-link>
+                        <router-link to="/auth/register"> Sign Up </router-link>
                     </li>
                 </ul>
             </div>
             <div class="search">
                 <form action="">
                     <div class="search-group">
-                        <input
-                            type="text"
-                            placeholder="Search any book ..."
-                        >
+                        <input type="text" placeholder="Search any book ..." />
                         <button type="submit">
                             <IconSearch />
                         </button>
@@ -87,10 +68,7 @@
                                 :color-stroke="isShowAction ? 'white' : 'black'"
                             />
                         </span>
-                        <div
-                            v-if="isShowAction"
-                            class="user-menu-dropdown"
-                        >
+                        <div v-if="isShowAction" class="user-menu-dropdown">
                             <ul class="user-menu">
                                 <li class="user-menu__item">
                                     <IconUser
@@ -130,13 +108,13 @@
 </template>
 
 <script setup>
-import IconSearch from '@/components/icons/IconSearch.vue';
-import IconCart from '../icons/IconCart.vue';
-import IconHeart from '../icons/IconHeart.vue';
-import IconUser from '../icons/IconUser.vue';
-import IconMyOrder from '../icons/IconMyOrder.vue';
-import IconLogout from '../icons/IconLogout.vue';
-import { ref } from 'vue';
+import IconSearch from "@/components/icons/IconSearch.vue";
+import IconCart from "../icons/IconCart.vue";
+import IconHeart from "../icons/IconHeart.vue";
+import IconUser from "../icons/IconUser.vue";
+import IconMyOrder from "../icons/IconMyOrder.vue";
+import IconLogout from "../icons/IconLogout.vue";
+import { ref } from "vue";
 
 const isShowAction = ref(false);
 </script>
@@ -155,6 +133,9 @@ header {
     width: 100%;
     z-index: 1000;
     background-color: white;
+    + * {
+        margin-top: 110px;
+    }
     .top-header {
         display: flex;
         background-color: $primary-color;
@@ -407,11 +388,15 @@ header {
                 }
             }
         }
+        + * {
+            margin-top: 210px; // Tự động áp dụng cho phần tử tiếp theo
+        }
     }
 }
 
 // Điều chỉnh cho di động (max-width: 576px)
 @media (max-width: 576px) {
+   
     .top-header {
         &__container {
             width: 100%;

@@ -92,7 +92,8 @@ const onSubmit = () => {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 50px 0;
+    margin-top: 150px;
+    margin-bottom: 30px;
     main {
         display: flex;
         flex-direction: column;
