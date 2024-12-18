@@ -37,12 +37,12 @@
                         </router-link>
                     </li>
                     <li>
-                        <router-link to="#">
+                        <router-link to="/contact">
                             Contact
                         </router-link>
                     </li>
                     <li>
-                        <router-link to="#">
+                        <router-link to="/about">
                             About
                         </router-link>
                     </li>
@@ -203,6 +203,10 @@ header {
                 width: 100%;
                 padding: 0 10px;
             }
+        }
+        .sale-banner__text{
+            font-size: 13px;
+            text-align: left;
         }
         .nav-bar {
             flex-wrap: wrap;
