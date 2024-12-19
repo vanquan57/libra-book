@@ -134,7 +134,7 @@ const handleSubmit = async () => {
 
 <style lang="scss" scoped>
 @import "@/assets/scss/_variables.scss";
-// get element parent 
+// get element parent
 
 .login-container {
     margin: 170px 0 60px 0;
